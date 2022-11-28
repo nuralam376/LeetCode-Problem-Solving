@@ -10,7 +10,7 @@ const isPerfectSquare = function(num) {
     let mid;
 
     while(left <= right) {
-        let mid = Math.floor((left + right) / 2);
+        mid = Math.floor((left + right) / 2);
         
         if(mid * mid < num) {
             left = mid + 1;
