@@ -7,15 +7,16 @@ class ListNode {
 }
 
 class LinkedList {
-    constructor(val) {
-        const newNode = new ListNode(val);
-        this.head = this.tail = newNode;
-    }
+    // constructor(val) {
+    //     const newNode = new ListNode(val);
+    //     newNode.next = this.head;
+    //     this.head = newNode;
+    // }
 
     append(val) {
         const newNode = new ListNode(val);
-        this.tail.next = newNode;
-        this.tail = newNode;
+        newNode.next = this.head;
+        this.head = newNode;
     }
 
     printList(head) {
@@ -46,10 +47,11 @@ const hasCycle = function(head) {
     return false;
 };
 
-const list = new LinkedList(3);
-list.append(2);
-list.append(0);
-list.append(-4);
+const list = new LinkedList();
+list.append(20);
+list.append(4);
+list.append(15);
+list.append(10);
 list.printList(list.head);
 
 console.log(hasCycle(list.head));
