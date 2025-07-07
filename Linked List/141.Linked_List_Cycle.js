@@ -34,15 +34,15 @@ class LinkedList {
  * @return {boolean}
  */
 const hasCycle = function(head) {
-    let slow = fast = head;
+    let seenNodes = new Set();
+    let curr = head;
 
-    while(fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-
-        if(slow === fast) {
+    while(curr) {
+        if(seenNodes.has(curr)) {
             return true;
-        }
+        } 
+        seenNodes.add(curr);
+        curr = curr.next;
     }
     return false;
 };
