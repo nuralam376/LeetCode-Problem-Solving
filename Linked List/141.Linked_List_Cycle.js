@@ -34,17 +34,29 @@ class LinkedList {
  * @return {boolean}
  */
 const hasCycle = function(head) {
-    let seenNodes = new Set();
-    let curr = head;
+    // let seenNodes = new Set();
+    // let curr = head;
 
-    while(curr) {
-        if(seenNodes.has(curr)) {
-            return true;
-        } 
-        seenNodes.add(curr);
-        curr = curr.next;
+    // while(curr) {
+    //     if(seenNodes.has(curr)) {
+    //         return true;
+    //     } 
+    //     seenNodes.add(curr);
+    //     curr = curr.next;
+    // }
+    // return false;
+    if(!head) return false;
+    let slow = head;
+    let fast = head.next;
+
+
+    while(slow != fast) {
+        if(!fast || !fast.next) return false;
+        slow = slow.next;
+        fast = fast.next.next
     }
-    return false;
+
+    return true;
 };
 
 const list = new LinkedList();
