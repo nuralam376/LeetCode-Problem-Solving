@@ -23,3 +23,19 @@ const getIntersectionNode = function(headA, headB) {
 
     return listA;
 };
+
+const getIntersectionNode2 = function(headA, headB) {
+    let set = new Set();
+
+    while(headB) {
+        set.add(headB);
+        headB = headB.next;
+    }
+
+    while(headA) {
+        if(set.has(headA)) return headA;
+        headA = headA.next;
+    }
+
+    return null;
+};
