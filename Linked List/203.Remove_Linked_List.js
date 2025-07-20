@@ -37,23 +37,19 @@
  * @return {ListNode}
  */
 const removeElements = function(head, val) {
-    let dummyNode = new ListNode();
-    dummyNode.next = head;
-    let previous = dummyNode;
-    let current = head;
+   let sentinel = new LinkedList(0, head);
+   let current = sentinel;
 
-    while(current) {
-        let next = current.next;
+   while(current && current.next) {
+    if(current.next.val === val) {
+        current.next = current.next.next;
+    }
+    else {
+        current = current.next;
+    }
+   } 
 
-        if(current.val === val) {
-            previous.next = next;
-        } else {
-            previous = current;
-        }
-
-        current = next;
-    }   
-    return dummyNode.next;
+   return sentinel.next;
 };
 
 const list = new LinkedList(1);
