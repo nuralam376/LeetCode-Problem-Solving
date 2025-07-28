@@ -35,23 +35,22 @@ class LinkedList {
  * @return {ListNode}
  */
 var removeNthFromEnd = function(head, n) {
-   let sentinel = new ListNode(0, head);
-   let length = 0;
-   let first = head;
+  let sentinel = new ListNode(0 ,head);
+  let first = sentinel;
 
-   while(first) {
-    length++;
+  for(let i = 0; i < n; i++) {
     first = first.next;
-   }
+  }
 
-   let prev = sentinel;
+  let second = sentinel;
 
-   for(let i = 0; i < length - n; i++) {
-        prev = prev.next;
-   }
-   prev.next = prev.next.next;
-   return sentinel.next;
-};
+  while(first.next) {
+    first = first.next;
+    second = second.next;
+  }
+  second.next = second.next.next;
+  return sentinel.next;
+}; 
 
 const list = new LinkedList(1);
 list.append(2);
