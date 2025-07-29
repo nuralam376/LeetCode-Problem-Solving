@@ -34,16 +34,17 @@ class LinkedList {
  * @return {ListNode}
  */
 const deleteDuplicates = function(head) {
-    let current = head;
+  let current = head;
 
-    while(current) {
-        while(current.next && current.val == current.next.val) {
-            current.next = current.next.next;
-        }
+  while(current && current.next) {
+    if(current.val === current.next.val) {
+        current.next = current.next.next;
+    } else {
         current = current.next;
     }
+  }
 
-    return head;
+  return head;
 };
 
 const list = new LinkedList(1);
