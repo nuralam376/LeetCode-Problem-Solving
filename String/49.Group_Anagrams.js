@@ -33,17 +33,17 @@ var groupAnagrams2 = function(strs) {
             freqArray[index]++;
         }
 
-        let k = "";
+        let key = "";
 
-        for(k = 0; k < 26; k++) {
-            k += "#" + freqArray[k];
+        for(let k = 0; k < 26; k++) {
+            key += "#" + freqArray[k];
         }
 
 
-        if(!map[k]) {
+        if(!map[key]) {
             map[key] = [s];
         } else {
-            map[k].push(s);
+            map[key].push(s);
         }
    }
 
