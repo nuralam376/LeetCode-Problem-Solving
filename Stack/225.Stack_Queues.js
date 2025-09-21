@@ -1,33 +1,64 @@
 // 225. Implement Stack using Queues
-class MyStack {
-    constructor() {
-        this.queue = [];
-    }   
-    push(x) {
-        this.queue.push(x);
-    }
-    pop() {
-        let last = this.queue.length - 1;
 
-        for(let i = 0; i < last; i++) {
-            let k = this.queue.shift();
-            this.queue.push(k);
-        }
-        return this.queue.shift();
-    }
-    top() {
-        return this.queue[this.queue.length - 1];
-    }
-    empty() {
-        return this.queue.length === 0;
-    }
-}
+var MyStack = function() {
+  this.q1 = [];
+  this.q2 = [];
+};
 
-// Your MyStack object will be instantiated and called as such:
-const obj = new MyStack()
-obj.push(1)
-const param_2 = obj.pop()
-const param_3 = obj.top()
-const param_4 = obj.empty()
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MyStack.prototype.push = function(x) {
+    this.q1.push(x);
+};
 
-console.log(param_2, param_3, param_4);
+/**
+ * @return {number}
+ */
+MyStack.prototype.pop = function() {
+    let n = this.q1.length;
+
+    for(let i = 0; i < n - 1; i++) {
+        this.q2.push(this.q1.shift());
+    }
+    let ans = this.q1.shift();
+    let temp = this.q1;
+    this.q1 = this.q2;
+    this.q2 = temp;
+    return ans;
+   
+};
+
+/**
+ * @return {number}
+ */
+MyStack.prototype.top = function() {
+    let n = this.q1.length;
+
+    for(let i = 0; i < n - 1; i++) {
+        this.q2.push(this.q1.shift());
+    }
+
+    let front = this.q1?.[0];
+    this.q2.push(this.q1.shift());
+    let temp = this.q1;
+    this.q1 = this.q2;
+    this.q2 = temp;
+    return front;
+
+};
+
+/**
+ * @return {boolean}
+ */
+MyStack.prototype.empty = function() {
+  return this.q1.length === 0;  
+};
+
+var obj = new MyStack()
+obj.push(5)
+var param_2 = obj.pop()
+var param_3 = obj.top()
+var param_4 = obj.empty()
+ 
