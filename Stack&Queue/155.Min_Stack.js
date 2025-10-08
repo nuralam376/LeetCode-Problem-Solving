@@ -28,8 +28,8 @@ MinStack.prototype.getMin = function() {
 };
 
  
-  var obj = new MinStack()
-  obj.push(5)
-  obj.pop()
-  var param_3 = obj.top()
-  var param_4 = obj.getMin()
+var obj = new MinStack()
+obj.push(5)
+obj.pop()
+var param_3 = obj.top()
+var param_4 = obj.getMin()
