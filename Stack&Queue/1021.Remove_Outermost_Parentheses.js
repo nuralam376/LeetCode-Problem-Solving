@@ -21,6 +21,24 @@ var removeOuterParentheses = function(s) {
   return ans;
 };
 
-console.log(removeOuterParentheses("(()())(())"));
-console.log(removeOuterParentheses("(()())(())(()(()))"));
-console.log(removeOuterParentheses("()()"));
+var removeOuterParentheses2 = function(s) {
+  let level = -1;
+  let ans = "";
+
+
+  for(let i = 0; i < s.length; i++) {
+    if(s[i] === "(") {
+      ++level;
+      ans += (level ? s[i] : "");
+    } else {
+      ans += (level ? s[i] : "")
+      --level;
+    }
+  }
+
+  return ans;
+};
+
+console.log(removeOuterParentheses2("(()())(())"));
+console.log(removeOuterParentheses2("(()())(())(()(()))"));
+console.log(removeOuterParentheses2("()()"));
