@@ -23,22 +23,21 @@ const guess = function(num) {
  * @return {number}
  */
 const guessNumber = function(n) {
-    let low = 1;
-    let high = n;
-    let mid;
+   let l = 1;
+   let r = n;
 
-    while(low <= high) {
-        mid = Math.floor((low + high) / 2);
-        const number = guess(mid);
-        if(number === 0) {
-            return mid;
-        } else if(number === 1) {
-            low = mid + 1;
-        } else if(number === -1) {
-            high = mid - 1;
-        }
+   while(l <= r) {
+    let m = l + Math.floor((r- l ) / 2);
+    let res = guess(m);
+
+    if(res === 0) {
+        return m;
+    } else if(res < 0) {
+        r = m - 1;
+    } else {
+        l = m + 1;
     }
-    return high;
+   }
 };
 
 console.log(guessNumber(10));
