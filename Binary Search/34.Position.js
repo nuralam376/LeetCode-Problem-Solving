@@ -5,39 +5,41 @@
  * @param {number} target
  * @return {number[]}
  */
-const searchRange = function(nums, target) {
-    const left = binarySearch(nums, target, true);
-    const right = binarySearch(nums, target, false);
-    console.log(left, right);
+var searchRange = function(nums, target) {
+    let l = 0;
+    let r = nums.length - 1;
+    let ans = [-1, -1];
 
-    return [left, right];
-};
-
-const binarySearch = (nums, target, leftSearch) => {
-    let left = 0;
-    let right = nums.length - 1;
-    let mid;
-    let index = -1;
-
-    while(left <= right) {
-        mid = Math.floor((left + right) / 2);
-
-        if(nums[mid] < target) {
-            left = mid + 1;
-        } else if(nums[mid] > target) {
-            right = mid - 1;
+    while(l <= r) {
+        let m = l + Math.floor((r - l) / 2);
+        if(nums[m] === target) {
+            ans[0] = m;
+            r = m - 1;
+        } else if(nums[m] < target) {
+            l = m + 1;
         } else {
-            index = mid;
-            if(leftSearch) {
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
+            r = m - 1;
         }
     }
-    return index;
-}
 
-console.log(searchRange([5,7,7,8,8,10], 8));
-console.log(searchRange([5,7,7,8,8,10], 6));
-console.log(searchRange([], 0));
+    l = 0;
+    r = nums.length - 1;
+
+    while(l <= r) {
+        m = l + Math.floor((r - l) / 2);
+
+        if(nums[m] === target) {
+            ans[1] = m;
+            l = m + 1;
+        } else if(nums[m] < target) {
+            l = m + 1;
+        } else {
+            r = m - 1;
+        }
+    }
+
+    return ans;
+};
+
+
+console.log(searchRange([5,7,7,8,8,10],8));
