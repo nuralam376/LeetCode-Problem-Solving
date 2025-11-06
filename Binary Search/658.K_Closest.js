@@ -7,21 +7,25 @@
  * @return {number[]}
  */
 const findClosestElements = function(arr, k, x) {
-    let left = 0;
-    let right = arr.length - k;
-    let mid;
+  let l = 0;
+  let r = arr.length - k;
 
-    while(left < right) {
-        mid = Math.floor((left + right) / 2);
+  while(l < r) {
+    let m = l + Math.floor((r - l)/ 2);
 
-        if(x - arr[mid] > arr[mid + k] - x) {
-            left = mid + 1;
-        } else {
-            right = mid;
-        }
+    if(arr[m + k] - x < x - arr[m]) {
+        l = m + 1;
+    } else {
+        r = m;
     }
-    return arr.slice(left, left + k);
+  }
+
+  let ans = [];
+  for(let i = l; i < l + k; i++) {
+    ans.push(arr[i]);
+  }
+  return ans;
 };
 
 console.log(findClosestElements([1,2,3,4,5], 4, 3));
-console.log(findClosestElements([1,2,3,4,5], 4, -1));
+console.log(findClosestElements([1,1,2,3,4,5], 4, -1));
