@@ -4,23 +4,16 @@
  * @param {string} t
  * @return {boolean}
  */
-const isSubsequence = function(s, t) {
-    let s_pointer = 0;
-    let t_pointer = 0;
+var isSubsequence = function(s, t) {
+  let i = j = 0;
 
-    if(s.length === 0) return true;
-
-    while(t_pointer <= t.length) {
-        if(t.charAt(t_pointer) === s.charAt(s_pointer)) {
-            s_pointer++;
-
-            if(s_pointer === s.length) {
-                return true;
-            }
-        }
-        t_pointer++;
+  while(j < t.length) {
+    if(s[i] === t[j]) {
+        i++;
     }
-    return false;
+    j++;
+  }
+  return i === s.length;
 };
 
 console.log(isSubsequence("abc", "ahbgdc"));
