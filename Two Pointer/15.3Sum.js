@@ -28,7 +28,7 @@ var twoSum = (arr,x,ans) => {
         } else if(sum < 0) {
             i++;
         } else {
-            ans.push(arr[i], arr[j], arr[x]);
+            ans.push([arr[i], arr[j], arr[x]]);
             i++;
             j--;
 
